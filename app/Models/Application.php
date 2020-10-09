@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\LabHome\AdminController;
 use http\Message;
 use Illuminate\Database\Eloquent\Model;
@@ -19,21 +19,24 @@ class Application extends Model
      * @param $application_id,$name,$sex,$email,$class,$self_intrduce
      * @return |null
      */
-    Public static function addUser($application_id,$name,$sex,$email,$class,$self_introduce){
+    Public static function addUser($application_id,$name,$sex,$email,$class,$self_introduce,$batch_num)
+    {
         try {
-             $data = Application::create([
-                 'application_id'=>$application_id,
-                 'name'=>$name,
-                 'sex'=>$sex,
-                 'email'=>$email,
-                 'class'=>$class,
-                 'self_introduce'=>$self_introduce,
-                 ]);
-             return $data;
+            $res=self::insert([
+                'application_id'=>$application_id,
+                'sex'=>$sex,
+                'name'=>$name,
+                'email'=>$email,
+                'class'=>$class,
+                'self_introduce'=>$self_introduce,
+                'batch_num'=>$batch_num,
+            ]);
+            //dd($res);
+            return $res;
         } catch (\Exception $e) {
-            logError('新增用户失败',[$e->getMessage()]);
-            return null;
+            logError('获取失败', [$e->getMessage()]);
         }
     }
+
 
 }

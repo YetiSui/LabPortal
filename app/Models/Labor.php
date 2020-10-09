@@ -14,7 +14,6 @@ class Labor extends Model
     public static function labIntroduce(){
         try{
             $result = self::select('produce','pro_url')->get();
-            //dd($result);
             return $result;
         } catch (\Exception $e){
             logError('获取失败', [$e->getMessage()]);
@@ -26,7 +25,6 @@ class Labor extends Model
     public static function labEnvironment(){
         try{
             $result = self::select('enviroment','env_url')->get();
-            //dd($result);
             return $result;
         } catch (\Exception $e){
             logError('获取失败', [$e->getMessage()]);
@@ -38,7 +36,6 @@ class Labor extends Model
     public static function labArchited(){
         try{
             $result = self::select('architect','arc_url')->get();
-            //dd($result);
             return $result;
         } catch (\Exception $e){
             logError('获取失败', [$e->getMessage()]);
@@ -50,7 +47,6 @@ class Labor extends Model
     public static function labAspect(){
         try{
             $result = self::select('direction','dir_url')->get();
-            //dd($result);
             return $result;
         } catch (\Exception $e){
             logError('获取失败', [$e->getMessage()]);

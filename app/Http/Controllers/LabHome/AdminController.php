@@ -18,16 +18,15 @@ class AdminController extends Controller
       * @return array
       */
     Public function addUser(AddUserRequest $request){
-       $application_id = $request->input('application_id');
-        $name = $request->input('name');
-        $sex = $request->input('sex');
-        $email = $request->input('email');
-        $class = $request->input('class');
-        $self_introduce = $request->input('self_introduce');
-        $data = Application::addUser($application_id,$name,$sex,$email,$class,$self_introduce);
-        $date = UserInformation::addUser($application_id);
-
-        return $data&&$date?
+        $application_id = $request['application_id'];
+        $name = $request['name'];
+        $sex = $request['sex'];
+        $email = $request['email'];
+        $class = $request['class'];
+        $self_introduce = $request['self_introduce'];
+        $batch_num = $request['batch_num'];
+        $data = Application::addUser($application_id,$name,$sex,$email,$class,$self_introduce,$batch_num);
+         return $data?
             json_success('成功',null,200):
             json_fail('失败',null,100);
     }
